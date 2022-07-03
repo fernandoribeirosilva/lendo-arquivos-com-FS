@@ -11,20 +11,7 @@ async function readdir(rootDir) {
 
 async function walk(files, rootDir) {
    for (let file of files) {
-      const fileFullPath = path.resolve(rootDir, file);
-      const stats = await fs.stat(fileFullPath);
 
-      // não vai pegar os arquivos .git é a pasta node_modules
-      if (/\.git/g.test(fileFullPath)) continue;
-      if (/node_modules/g.test(fileFullPath)) continue;
-
-      if (stats.isDirectory()) {
-         readdir(fileFullPath);
-         continue;
-      }
-
-      // vai pegar somente os arquivos .html
-      if (!/\.html$/g.test(fileFullPath)) continue;
       console.log(fileFullPath);
    }
 }
